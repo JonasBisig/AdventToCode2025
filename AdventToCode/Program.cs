@@ -6,7 +6,7 @@ namespace AdventToCode
         static void Main(string[] args)
         {
             //Read Input File
-            IEnumerable<string> inputLines = File.ReadLines("C:\\Users\\jonas\\Downloads\\input1.txt");
+            IEnumerable<string> inputLines = File.ReadLines("C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\bin\\input.txt");
 
             //Dial starts at 50
             int dial = 50;
