@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -24,16 +26,29 @@ namespace AdventToCode
                 //go through each id in the range start from the first id and end with the last id
                 for (long id = long.Parse(range.Split("-")[0]); id <= long.Parse(range.Split("-")[1]); id++)
                 {
-                    //split the id in half with substring
-                    string firstHalf = id.ToString().Substring(0, id.ToString().Length / 2);
-                    string secondHalf = id.ToString().Substring(id.ToString().Length / 2);
-                    
-                    //check if the two halfes are identical, then the id is invalid
-                    if (firstHalf == secondHalf)
+                    //check each split possibility for the id
+                    for (int x = 2; x <= id.ToString().Length; x++)
                     {
-                        //add the invalid id to the result
-                        Console.WriteLine("Invalid ID: " + id);
-                        result += id;
+                        List<string> sequences = new List<string>();
+
+                        //if this variable is not 0 then the id cant be devided in x many parts
+                        int canDevide = id.ToString().Length % x;
+                        if (canDevide == 0)
+                        {
+                            //devide the id in x many parts and save it in sequences
+                            for (int i = 0; i < x; i++)
+                            {
+                                sequences.Add(id.ToString().Substring(i * id.ToString().Length / x, id.ToString().Length / x));
+                            }
+
+                            //if all parts of the splited id are identical then the id is an invalid id and its added to the result
+                            if(sequences.All(x => x == sequences[0]))
+                            {
+                                Console.WriteLine("Invalid ID: " + id);
+                                result += id;
+                                break;
+                            }
+                        }
                     }
                 }
             }
