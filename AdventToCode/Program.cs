@@ -5,12 +5,17 @@ namespace AdventToCode
     {
         static void Main(string[] args)
         {
+            //example string
+            string example = "L68,L30,R48,L5,R60,L55,L1,L99,R14,L82";
+
             //Read Input File
-            IEnumerable<string> inputLines = File.ReadLines("C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\bin\\input.txt");
+            //to use the example string enable this line and comment the line below
+            //IEnumerable<string> inputLines = example.Split(",");
+            IEnumerable<string> inputLines = File.ReadLines(Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.FullName, "input.txt"));
 
             //Dial starts at 50
             int dial = 50;
-            int zeroCount = 0;
+            int password = 0;
             foreach (string line in inputLines)
             {
                 //Extract Direction -> R = +, L = -
@@ -32,15 +37,15 @@ namespace AdventToCode
                 //limit dial value from 0 - 99
                 dial = (dial % 100 + 100) % 100;
 
-                //Increment the zeroCount Value
+                //Increment the password Value
                 if (dial == 0)
                 {
-                    zeroCount++;
+                    password++;
                 }
             }
 
             //Display the final Password
-            Console.WriteLine(zeroCount);
+            Console.WriteLine(password);
         }
     }
 }
