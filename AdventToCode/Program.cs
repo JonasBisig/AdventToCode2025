@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AdventToCode
 {
@@ -14,33 +15,48 @@ namespace AdventToCode
             string example = "987654321111111,811111111111119,234234234234278,818181911112111";
 
             //to use the example string enable this line and comment the line below
-            //IEnumerable<string> batteries = example.Split(",");
-            IEnumerable<string> batteries = File.ReadLines(Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.FullName, "input.txt"));
+            IEnumerable<string> batteries = example.Split(",");
+            //IEnumerable<string> batteries = File.ReadLines(Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.FullName, "input.txt"));
 
-            long joltage = 0;
+            long result = 0;
             foreach (string battery in batteries)
             {
                 //convert the string in a List full of integer
-                List<int> originalDigits = battery.Select(c => int.Parse(c.ToString())).ToList();
+                List<int> searchRange = battery.Select(c => int.Parse(c.ToString())).ToList();
 
-                //remove last entry
-                List<int> getFirstDigit = originalDigits.ToList();
-                getFirstDigit.RemoveAt(getFirstDigit.Count - 1);
+                //create a reserve list, containing the last 12 integer of searchRange
+                List<int> reserve = searchRange.GetRange(searchRange.Count - 12, 12);
 
-                //get the max value -> first digit
-                int firstDigit = getFirstDigit.Max();
+                //delete the last 12 integer in searchRange
+                searchRange.RemoveRange(searchRange.Count - 12, 12);
 
-                //cut away all digits from 0 to the index of the first digit
-                List<int> getSecondDigit = originalDigits.ToList();
-                getSecondDigit.RemoveRange(0, originalDigits.IndexOf(firstDigit) + 1);
+                string joltage = "";
+                int i = 0;
+                while (reserve.Count > 0)
+                {
+                    //change searchRange to -> last found int - end of list
+                    searchRange = searchRange.GetRange(i, searchRange.Count - i);
 
-                //determine the max value in this array -> second digit
-                int secondDigit = getSecondDigit.Max();
+                    //add the first reserve int to the searchRange
+                    searchRange.Add(reserve[0]);
 
-                //add value to joltage
-                joltage += int.Parse(firstDigit.ToString() + secondDigit.ToString());
+                    //remove this int from reserve
+                    reserve.RemoveRange(0, 1);
+
+                    //get the index of the max int in the searchRange
+                    i = searchRange.IndexOf(searchRange.Max());
+
+                    //add the int to the joltage
+                    joltage += searchRange[i];
+
+                    //increment i to exclude this int in the next loop
+                    i++;
+                }
+
+                //add joltage to result
+                result += long.Parse(joltage);
             }
-            Console.WriteLine("Highest joltage is: " + joltage);
+            Console.WriteLine("Highest joltage is: " + result);
         }
     }
 }
