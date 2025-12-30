@@ -9,7 +9,12 @@ namespace AdventToCode
     {
         static void Main(string[] args)
         {
-            
+            //example string
+            string example = "";
+
+            //to use the example string enable this line and comment the line below
+            //IEnumerable<string> array = example.Split(",");
+            IEnumerable<string> array = File.ReadLines(Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.FullName, "input.txt"));
         }
     }
 }
