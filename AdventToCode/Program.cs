@@ -60,7 +60,7 @@ namespace AdventToCode
             List<List<int>> dimensions = array.Select(line => line.Split(",").Select(num => int.Parse(num)).ToList()).ToList();
 
             List<string> connections = new List<string>();
-            List<List<int>> cirquits = new List<List<int>>();
+            List<List<int>> circuits = new List<List<int>>();
 
             //to for ether 10 shortest connection or 1000 shortest connections -> example or real input
             for (int z = 0; z < connectionCount; z++)
@@ -95,43 +95,43 @@ namespace AdventToCode
                     }
                 }
 
-                //add the connection and get the index of each point in the cirquits list
+                //add the connection and get the index of each point in the circuits list
                 if (index1 is not -1 && index2 is not -1 && minDistance is not double.MaxValue)
                 {
                     connections.Add(string.Join(",", index1, index2));
-                    int i1 = cirquits.FindIndex(x => x.Contains(index1));
-                    int i2 = cirquits.FindIndex(x => x.Contains(index2));
+                    int i1 = circuits.FindIndex(x => x.Contains(index1));
+                    int i2 = circuits.FindIndex(x => x.Contains(index2));
 
-                    //if both points were found in different cirquits -> merge them
+                    //if both points were found in different circuits -> merge them
                     if (i1 != -1 && i2 != -1 && i1 != i2)
                     {
-                        //Merge cirquits
-                        cirquits[i1] = cirquits[i1].Union(cirquits[i2]).ToList();
-                        cirquits.RemoveAt(i2);
+                        //Merge circuits
+                        circuits[i1] = circuits[i1].Union(circuits[i2]).ToList();
+                        circuits.RemoveAt(i2);
                     }
                     //if only one point was found -> add the other point to that cirquit but only if not already contained
                     else if (i1 != -1)
                     {
-                        if(!cirquits[i1].Contains(index2)) cirquits[i1].Add(index2);
+                        if(!circuits[i1].Contains(index2)) circuits[i1].Add(index2);
                     }
                     //if only one point was found -> add the other point to that cirquit but only if not already contained
                     else if (i2 != -1)
                     {
-                        if (!cirquits[i2].Contains(index1)) cirquits[i2].Add(index1);
+                        if (!circuits[i2].Contains(index1)) circuits[i2].Add(index1);
                     }
                     //if no index is found -> create a new cirquit with both points
                     else
                     {
-                        cirquits.Add(new List<int>([index1, index2]));
+                        circuits.Add(new List<int>([index1, index2]));
                     }
                 }
             }
 
-            //order cirquits by cirquit size descending -> 5,4,3,2,1
-            cirquits = cirquits.OrderByDescending(list => list.Count).ToList();
+            //order circuits by cirquit size descending -> 5,4,3,2,1
+            circuits = circuits.OrderByDescending(list => list.Count).ToList();
 
-            //multiply the sizes of the three largest cirquits
-            long result = cirquits[0].Count * cirquits[1].Count * cirquits[2].Count;
+            //multiply the sizes of the three largest circuits
+            long result = circuits[0].Count * circuits[1].Count * circuits[2].Count;
 
             //only for measuring time elapsed
             timer.Stop();
