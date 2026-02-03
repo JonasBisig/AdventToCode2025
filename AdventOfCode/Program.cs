@@ -74,7 +74,6 @@ namespace AdventToCode
                     {
                         string newValue = ToggleLamps(current.Value, btn);
 
-                        // Nur neue Zustände besuchen
                         if (!visited.Contains(newValue))
                         {
                             visited.Add(newValue);
