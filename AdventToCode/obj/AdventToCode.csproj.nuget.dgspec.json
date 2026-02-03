@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\AdventToCode.csproj": {}
+    "C:\\Users\\admin\\source\\repos\\AdventOfCode2025\\AdventToCode\\AdventToCode.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\AdventToCode.csproj": {
+    "C:\\Users\\admin\\source\\repos\\AdventOfCode2025\\AdventToCode\\AdventToCode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\AdventToCode.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\AdventOfCode2025\\AdventToCode\\AdventToCode.csproj",
         "projectName": "AdventToCode",
-        "projectPath": "C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\AdventToCode.csproj",
-        "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jonas\\source\\repos\\JonasBisig\\AdventToCode\\AdventToCode\\obj\\",
+        "projectPath": "C:\\Users\\admin\\source\\repos\\AdventOfCode2025\\AdventToCode\\AdventToCode.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\source\\repos\\AdventOfCode2025\\AdventToCode\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jonas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
